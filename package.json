@@ -4,10 +4,10 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-        "dev": "node server",
+        "dev": "nodemon --watch server --watch server.ts --exec tsx server.ts",
         "build": "npm run build:client && npm run build:server",
         "build:client": "vite build --outDir dist/client",
-        "build:server": "vite build --ssr src/server/entry-server.ts --outDir dist/server",
+        "build:server": "tsc -p tsconfig.server.json && vite build --ssr src/server/entry-server.ts --outDir dist/server",
         "preview": "cross-env NODE_ENV=production node server"
     },
     "dependencies": {
