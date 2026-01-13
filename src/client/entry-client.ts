@@ -1,5 +1,17 @@
-import '../style.css'
-import '../typescript.svg'
-import { setupCounter } from './counter'
+import './style.css'
+import * as mainCode from "./entries/main-page/code"
+import * as htmlCode from "./entries/html-page/code"
+import * as errorCode from "./entries/error-page/code"
 
-setupCounter(document.querySelector('#counter') as HTMLButtonElement)
+const href = window.location.pathname.slice(1);
+
+switch (href) {
+    case "":
+        mainCode.default()
+        break;
+    case "html-page":
+        htmlCode.default()
+        break;
+    default:
+        errorCode.default()
+}

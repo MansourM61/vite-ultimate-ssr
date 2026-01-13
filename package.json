@@ -4,11 +4,14 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-        "dev": "nodemon --watch server --watch server.ts --exec tsx server.ts",
-        "build": "npm run build:client && npm run build:server",
+        "dev": "nodemon --watch src/app/main --watch src/app/main.ts --exec tsx src/app/main.ts",
+        "build": "npm run clean:dist && npm run build:client && npm run build:server",
         "build:client": "vite build --outDir dist/client",
         "build:server": "tsc -p tsconfig.server.json && vite build --ssr src/server/entry-server.ts --outDir dist/server",
-        "preview": "cross-env NODE_ENV=production node server"
+        "preview": "cross-env NODE_ENV=production node dist/app/main",
+        "clean": "npm run clean:dist && npm run clean:npm",
+        "clean:dist": "rimraf dist",
+        "clean:npm": "rimraf node_modules"
     },
     "dependencies": {
         "compression": "^1.8.1",

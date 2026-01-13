@@ -1,6 +1,8 @@
 import fs from 'node:fs/promises'
 import express from 'express'
 import { ViteDevServer } from 'vite'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url';
 
 // Constants
 const isProduction = process.env.NODE_ENV === 'production'
@@ -11,6 +13,10 @@ const base = process.env.BASE || '/'
 const templateHtml = isProduction
     ? await fs.readFile('./dist/client/index.html', 'utf-8')
     : ''
+
+const __dirname: string = path.dirname(fileURLToPath(import.meta.url));
+const root: string = process.cwd();
+const resolve = (_path: string) => path.resolve(__dirname, _path);
 
 // Create http server
 const app = express()
@@ -46,10 +52,13 @@ app.use('*all', async (req, res) => {
             // Always read fresh template in development
             template = await fs.readFile('./index.html', 'utf-8')
             template = await vite.transformIndexHtml(url, template)
-            render = (await vite.ssrLoadModule('/src/server/entry-server.ts')).render
+            render = (await vite.ssrLoadModule('./src/server/entry-server.ts')).render
         } else {
             template = templateHtml
-            render = (await import('./dist/server/entry-server.js')).render
+
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            render = (await import('../../dist/server/entry-server.js')).render
         }
 
         const rendered = await render(url)

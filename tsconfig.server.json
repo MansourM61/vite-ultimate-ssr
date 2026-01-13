@@ -4,28 +4,25 @@
         "alwaysStrict": true,
         "allowSyntheticDefaultImports": true,
         "baseUrl": ".",
-        "checkJs": true,
+        "checkJs": false,
         "declaration": true,
         "declarationMap": false,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "incremental": true,
-        "jsx": "react-jsxdev",
         "lib": [
-            "DOM",
-            "DOM.Iterable",
             "ESNext"
         ],
         "strict": true,
-        "outDir": ".",
+        "outDir": "dist/app",
         "module": "ESNext",
-        "moduleResolution": "Node",
+        "moduleResolution": "node",
         "skipLibCheck": true,
         "sourceMap": false,
         "target": "ESNext"
     },
-    "include": [
-        "server.ts"
+    "files": [
+        "src/app/main.ts"
     ],
     "exclude": [
         "dist",
