@@ -8,6 +8,9 @@
             "DOM",
             "DOM.Iterable"
         ],
+        "jsx": "preserve",
+        "jsxFactory": "h",
+        "jsxFragmentFactory": "Fragment",
         "skipLibCheck": true,
         /* Bundler mode */
         "moduleResolution": "bundler",
@@ -33,6 +36,9 @@
             ],
             "@apis/*": [
                 "./src/apis/*"
+            ],
+            "@lib/*": [
+                "./src/lib/*"
             ]
         }
     },
