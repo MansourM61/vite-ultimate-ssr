@@ -51,9 +51,12 @@ app.get("/api/:apiName", async (req, res) => {
             handle: Function
         }
 
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        const dummy = ((!isProduction) ? (await vite.ssrLoadModule('./src/apis/entry-api.ts')) : (await import('../../dist/api/entry-api.js'))) as { default: API[] }
+        const dummy = (
+            (!isProduction)
+                ? (await vite.ssrLoadModule('./src/app/entries/api.ts'))
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                : (await import('../../dist/apis/api.js'))) as { default: API[] }
 
         const getAPI = dummy.default.find(e => e.API_TYPE === "GET" && e.API_NAME === appName)
 
@@ -65,9 +68,14 @@ app.get("/api/:apiName", async (req, res) => {
 
     } catch (e) {
         if (e instanceof Error) {
-            !isProduction && vite && vite.ssrFixStacktrace(e)
-            console.log(e.stack)
-            res.status(500).end(e.stack)
+            if (!isProduction) {
+                vite && vite.ssrFixStacktrace(e)
+                console.log(e.stack)
+                res.status(500).end(e.stack)
+            }
+            else {
+                res.status(500).end(e.message)
+            }
         } else {
             console.log(e)
             res.status(500).end('Unknown error')
@@ -87,13 +95,13 @@ app.use('*all', async (req, res) => {
             // Always read fresh template in development
             template = await fs.readFile('./index.html', 'utf-8')
             template = await vite.transformIndexHtml(url, template)
-            render = (await vite.ssrLoadModule('./src/server/entry-server.ts')).render
+            render = (await vite.ssrLoadModule('./src/app/entries/server.ts')).render
         } else {
             template = templateHtml
 
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            render = (await import('../../dist/server/entry-server.js')).render
+            render = (await import('../../dist/server/server.js')).render
         }
 
         const rendered = await render(url)
@@ -105,9 +113,14 @@ app.use('*all', async (req, res) => {
         res.status(200).set({ 'Content-Type': 'text/html' }).send(html)
     } catch (e) {
         if (e instanceof Error) {
-            !isProduction && vite && vite.ssrFixStacktrace(e)
-            console.log(e.stack)
-            res.status(500).end(e.stack)
+            if (!isProduction) {
+                vite && vite.ssrFixStacktrace(e)
+                console.log(e.stack)
+                res.status(500).end(e.stack)
+            }
+            else {
+                res.status(500).end(e.message)
+            }
         } else {
             console.log(e)
             res.status(500).end('Unknown error')

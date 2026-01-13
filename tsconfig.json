@@ -20,7 +20,21 @@
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true,
-        "noUncheckedSideEffectImports": true
+        "noUncheckedSideEffectImports": true,
+        "paths": {
+            "@app/*": [
+                "./src/app/*"
+            ],
+            "@assets/*": [
+                "./src/assets/*"
+            ],
+            "@routes/*": [
+                "./src/routes/*"
+            ],
+            "@apis/*": [
+                "./src/apis/*"
+            ]
+        }
     },
     "include": [
         "src"

@@ -19,7 +19,21 @@
         "moduleResolution": "node",
         "skipLibCheck": true,
         "sourceMap": false,
-        "target": "ESNext"
+        "target": "ESNext",
+        "paths": {
+            "@app/*": [
+                "./src/app/*"
+            ],
+            "@assets/*": [
+                "./src/assets/*"
+            ],
+            "@routes/*": [
+                "./src/routes/*"
+            ],
+            "@apis/*": [
+                "./src/apis/*"
+            ]
+        }
     },
     "files": [
         "src/app/main.ts"

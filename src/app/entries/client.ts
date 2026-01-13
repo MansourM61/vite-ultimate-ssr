@@ -1,7 +1,7 @@
-import './style.css'
-import * as mainCode from "./entries/main-page/code"
-import * as htmlCode from "./entries/html-page/code"
-import * as errorCode from "./entries/error-page/code"
+import '@assets/css/style.css'
+import * as mainCode from "@routes/main/code"
+import * as htmlCode from "@routes/html/code"
+import * as errorCode from "@routes/error/code"
 
 const href = window.location.pathname.slice(1);
 

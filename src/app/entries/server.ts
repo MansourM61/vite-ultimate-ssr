@@ -1,6 +1,6 @@
-import * as mainEntry from './entries/main-page'
-import * as htmlEntry from './entries/html-page'
-import * as errorEntry from './entries/error-page'
+import * as mainEntry from '@routes/main/page'
+import * as htmlEntry from '@routes/html/page'
+import * as errorEntry from '@routes/error/page'
 
 export function render(url: string) {
     switch (url) {
