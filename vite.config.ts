@@ -9,6 +9,7 @@ export default {
             '@assets': path.join(__dirname, './src/assets'),
             '@routes': path.join(__dirname, './src/routes'),
             '@apis': path.join(__dirname, './src/apis'),
+            '@endpoints': path.join(__dirname, './src/endpoints'),
             '@lib': path.join(__dirname, './src/lib'),
         }
     }

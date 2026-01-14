@@ -7,10 +7,11 @@
         "dev": "nodemon --watch src/app/main --watch src/app/main.ts --exec tsx src/app/main.ts",
         "build": "npm run clean:dist && npm run build:client && npm run build:server",
         "build:client": "vite build --outDir dist/client",
-        "build:server": "npm run build:server:main && npm run build:server:entry && npm run build:server:api",
+        "build:server": "npm run build:server:main && npm run build:server:entry && npm run build:server:api && npm run build:server:endpoint",
         "build:server:main": "tsc -p tsconfig.server.json",
         "build:server:entry": "vite build --ssr src/app/entries/server.ts --outDir dist/server",
         "build:server:api": "vite build --ssr src/app/entries/api.ts --outDir dist/apis",
+        "build:server:endpoint": "vite build --ssr src/app/entries/endpoint.ts --outDir dist/endpoints",
         "preview": "cross-env NODE_ENV=production node dist/app/main",
         "clean": "npm run clean:dist && npm run clean:npm",
         "clean:dist": "rimraf dist",
@@ -21,7 +22,9 @@
         "compression": "^1.8.1",
         "dotenv": "^17.2.3",
         "express": "^5.2.1",
-        "sirv": "^3.0.2"
+        "htmx.org": "^2.0.8",
+        "sirv": "^3.0.2",
+        "typed-htmx": "^0.3.1"
     },
     "devDependencies": {
         "@types/alpinejs": "^3.13.11",

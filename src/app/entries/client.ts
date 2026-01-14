@@ -1,7 +1,7 @@
 import Alpine from "alpinejs";
 import component from "alpinejs-component";
+import htmx from "htmx.org";
 import '@assets/css/style.css'
-
 
 const href = window.location.pathname.slice(1);
 
@@ -21,19 +21,29 @@ switch (href) {
     case "alpine-page":
         lib = await import("@routes/alpine/code");
         break;
+    case "htmx-page":
+        lib = await import("@routes/htmx/code");
+        break;
     default:
         lib = await import("@routes/error/code");
         break;
 }
 lib.default();
 
-// For `alpine-component` plugins to work in TS, create
-// node_modules/@types/alpinejs-component/index.d.ts
-// with the following content:
-// export default function _default(Alpine: any): void;
-// Every time the npm package manager is run, the file needs to be added!
+// `alpine-component` plugin does not have any type definition,
+// Therefore the type definition file for it is added to:
+//
+// src/types/alpinejs-component.d.ts with the following content:
+//
+// declare module 'alpinejs-component' {
+//     export default function _default(Alpine: any): void;
+// }
+//
+// The solution is borrowed from:
+// https://www.credera.com/en-us/insights/typescript-adding-custom-type-definitions-for-existing-libraries
 Alpine.plugin(component);
 
 window.Alpine = Alpine;
+window.htmx = htmx;
 
 Alpine.start();

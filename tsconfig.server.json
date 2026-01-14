@@ -33,6 +33,9 @@
             "@apis/*": [
                 "./src/apis/*"
             ],
+            "@endpoints/*": [
+                "./src/endpoints/*"
+            ],
             "@lib/*": [
                 "./src/lib/*"
             ]

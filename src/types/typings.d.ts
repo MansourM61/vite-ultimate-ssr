@@ -1,4 +1,5 @@
 import Alpine from "alpinejs";
+import htmx from "htmx.org";
 
 declare namespace JSX {
     interface IntrinsicElements extends Record<string, any> { }
@@ -10,4 +11,8 @@ declare global {
     }
 }
 
-declare 
+declare global {
+    interface Window {
+        htmx: typeof htmx;
+    }
+}

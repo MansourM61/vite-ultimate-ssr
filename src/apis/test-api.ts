@@ -1,7 +1,3 @@
-interface Request {
-    send: Function
-}
-
 export const API_NAME = "test-api"
 
 export const API_TYPE = "GET"

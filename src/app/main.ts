@@ -83,6 +83,49 @@ app.get("/api/:apiName", async (req, res) => {
     }
 })
 
+// htmx end point
+app.get("/ep/:epName", async (req, res) => {
+    try {
+        const epName = req.params.epName;
+
+        type EP = {
+            EP_NAME: string,
+            EP_TYPE: "GET",
+            handle: Function
+        }
+
+        const dummy = (
+            (!isProduction)
+                ? (await vite.ssrLoadModule('./src/app/entries/endpoint.ts'))
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                : (await import('../../dist/endpoints/endpoint.js'))) as { default: EP[] }
+
+        const getEP = dummy.default.find(e => e.EP_TYPE === "GET" && e.EP_NAME === epName)
+
+        if (getEP === undefined) {
+            throw new Error("Endpoint does not exist!")
+        }
+
+        return getEP.handle(req, res)
+
+    } catch (e) {
+        if (e instanceof Error) {
+            if (!isProduction) {
+                vite && vite.ssrFixStacktrace(e)
+                console.log(e.stack)
+                res.status(500).end(e.stack)
+            }
+            else {
+                res.status(500).end(e.message)
+            }
+        } else {
+            console.log(e)
+            res.status(500).end('Unknown error')
+        }
+    }
+})
+
 
 // Serve HTML
 app.use('*all', async (req, res) => {
