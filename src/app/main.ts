@@ -3,8 +3,10 @@ import express from 'express'
 import { ViteDevServer } from 'vite'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url';
+import dotenv from 'dotenv'
 
 // Constants
+dotenv.config()
 const isProduction = process.env.NODE_ENV === 'production'
 const port = process.env.PORT || 5173
 const base = process.env.BASE || '/'

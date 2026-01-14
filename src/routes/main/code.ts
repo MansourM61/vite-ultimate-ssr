@@ -1,4 +1,4 @@
-import '/media/typescript.svg'
+import '@assets/media/typescript.svg'
 import { setupCounter } from './counter'
 
 export default function execute() {

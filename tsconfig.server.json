@@ -13,6 +13,9 @@
         "lib": [
             "ESNext"
         ],
+        "types": [
+            "./src/types/typings.d.ts"
+        ],
         "strict": true,
         "outDir": "dist/app",
         "module": "ESNext",

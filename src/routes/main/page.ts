@@ -1,4 +1,4 @@
-import typescriptLogo from '/media/typescript.svg'
+import typescriptLogo from '@assets/media/typescript.svg'
 
 export default function render(_url: string) {
     const html = /*html*/`

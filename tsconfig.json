@@ -9,7 +9,8 @@
             "DOM.Iterable"
         ],
         "types": [
-            "typed-htmx"
+            "typed-htmx",
+            "./src/types/typings.d.ts"
         ],
         "jsx": "preserve",
         "jsxFactory": "h",
