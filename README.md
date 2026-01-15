@@ -66,3 +66,9 @@ The server code is in `src/app/main.ts`. Not that much change is needed, unless 
 After adding a route, the server-side HTML is registered in `src/app/entries/server.ts` while the client-side code is added in `src/app/entries/client.ts`.
 
 The endpoints and APIs are added to `src/app/entries/endpoint.ts` and `src/app/entries/api.ts`, respectively.
+
+The landing page files are located in `src/routes/$main` folder.
+
+## Todo
+
+- Make the routing dynamic (so that no code entry/registration needed).

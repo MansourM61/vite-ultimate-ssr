@@ -10,20 +10,21 @@ let lib: {
 }
 switch (href) {
     case "":
-        lib = await import("@routes/main/code");
+        lib = await import("@routes/$main/code");
         break;
-    case "html-page":
+    case "html":
         lib = await import("@routes/html/code");
         break;
-    case "jsx-page":
+    case "jsx":
         lib = await import("@routes/jsx/code");
         break;
-    case "alpine-page":
+    case "alpine":
         lib = await import("@routes/alpine/code");
         break;
-    case "htmx-page":
+    case "htmx":
         lib = await import("@routes/htmx/code");
         break;
+    case "error":
     default:
         lib = await import("@routes/error/code");
         break;
