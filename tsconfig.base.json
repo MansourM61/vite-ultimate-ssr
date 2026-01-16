@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "skipLibCheck": true,
+        "noEmit": true,
+        /* Linting */
+        "strict": true,
+        "paths": {
+            "@app/*": [
+                "./src/app/*"
+            ],
+            "@assets/*": [
+                "./src/assets/*"
+            ],
+            "@routes/*": [
+                "./src/routes/*"
+            ],
+            "@apis/*": [
+                "./src/apis/*"
+            ],
+            "@endpoints/*": [
+                "./src/endpoints/*"
+            ],
+            "@lib/*": [
+                "./src/lib/*"
+            ]
+        }
+    }
+}
